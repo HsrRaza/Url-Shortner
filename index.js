@@ -16,10 +16,10 @@ app.use(express.json());
 app.use("/url", urlRoute)
 
 
-app.get('/:shortdId', async (req, res) => {
-    const shortId = req.params.shortdId;
-   const entry =  await URL.findByIdAndUpdate({
-        shortId
+app.get('/:shortId', async (req, res) => {
+    const {shortId} = req.params;
+   const entry =  await URL.findOneAndUpdate({
+        shortId,
     }, {
         $push: {
             visitHistory: {
